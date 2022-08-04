@@ -28,8 +28,7 @@ Example:
 aucell_data_collection = robjects.globalenv['aucell_data_collection'] 
 ```
 
-## store the argument of aucell_data_collection function in tuple
-## tuple contain key and value -> key: argument name  and value: file_paths
+## store the argument of aucell_data_collection function in tuple \n tuple contain key and value -> key: argument name  and value: file_paths
 ```console
 args = (('csv_file_path', self.csv_file_path),
         ('gmt_file_path', self.gmt_file_path),
