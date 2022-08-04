@@ -55,5 +55,10 @@ obj = r_2_python_conversion("csv_file_path", "gmt_file_path")
 output = obj.aucell_score(r_path)
 ```
 
-
+# Usage
+```console
+# source function is use to load the whole R script inside the Python
+r = robjects.r
+r['source'](r_file_path)
+```
 
