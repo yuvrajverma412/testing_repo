@@ -90,6 +90,48 @@ obj = r_2_python_conversion("csv_file_path", "gmt_file_path")
 output = obj.aucell_score(r_path, **args)
 ```
 
+# Arguments
+
+## GSVA
+```console
+gsva_score(method: "ssgsea", 
+            kcdf: "Gaussian", 
+            abs_ranking: False,
+            min_sz: 1,
+            max_sz: float('inf'),
+            parallel_sz: 100000000,
+            max_diff: True,
+            tau: {'tau_method':'ssgsea', 'gsva': 1, 'ssgsea': 0.25},
+            ssgsea_norm: True,
+            verbose: True)
+```
+
+## AUCell
+```console
+aucell_score(featureType: "genes",
+                plotStats: True,
+                splitByBlocks: False,
+                BPPARAM: 'null',
+                keepZeroesAsNA: False,
+                verbose: True,
+                nCores: 'null',
+                mctype: 'null',
+                nCores_cal_auc: 1,
+                normAUC: True,
+                aucMaxRank: 0.05,
+                verbose_cal_auc: True)
+```
+
+## SingScore
+```console
+# if knownDirection = False set the downSet value False.
+singscore_score("downSet": False,
+                "subSamples": 'null',
+                "centerScore": True,
+                "dispersionFun": mad,
+                "knownDirection": True)
+```
+
 # Usage
 
 ## source function is use to load the whole R script inside the Python
@@ -117,27 +159,5 @@ BiocManager::install("singscore")
 ## Command to install AUCell Library
 ```console
 BiocManager::install("AUCell")
-```
-## pass the R script path
-```console
-r_path = 'r_script_file_path'
-```
-
-## pass the csv and gmt path
-```console
-obj = r_2_python_conversion("csv_file_path", "gmt_file_path")
-```
-
-## choice the function which you want to run
-```console
-output = obj.aucell_score(r_path)
-```
-
-# Usage
-
-## source function is use to load the whole R script inside the Python
-```console
-r = robjects.r
-r['source'](r_file_path)
 ```
 
