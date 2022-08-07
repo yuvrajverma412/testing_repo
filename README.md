@@ -29,7 +29,11 @@ python -m pip install -r requirements.txt
 ```
 
 ## Description
-r_2_python_conversion package is use to calculate GSVA, SingScore and AUCell.
+r_2_python_conversion package is use to calculate GSVA, SingScore and AUCell. We 
+can calculate GSVA, SingScore and AUCell by passing the Micro Array and GeneSet data.
+And it return numpy array. To find GSVA Enrichment Score you use **gsva_score** function,
+for singscore you use **singscore_score** function and for AUCell you use **aucell_score** 
+function.
 
 Gene set variation analysis (GSVA) is a particular type of gene set enrichment
 method that works on single samples and enables pathway-centric analyses of 
@@ -44,10 +48,6 @@ AUCell allows to identify cells with active gene sets (e.g. signatures, gene
 modules...) in single-cell RNA-seq data. AUCell uses the "Area Under the Curve" 
 (AUC) to calculate whether a critical subset of the input gene set is enriched 
 within the expressed genes for each cell.
-
-we can calculate GSVA, SingScore and AUCell by passing the Micro Array and GeneSet data.
-And it return numpy array. To find GSVA Enrichment Score you use **gsva_score** function,
-for singscore you use **singscore_score** function and for AUCell you use **aucell_score** function.
 
 In this package, we using rpy2 library which help in to load the R script into python.
 And inside python we can access all the functionality of the R script by using rp2.
