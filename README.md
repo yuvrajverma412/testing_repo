@@ -46,7 +46,8 @@ modules...) in single-cell RNA-seq data. AUCell uses the "Area Under the Curve"
 within the expressed genes for each cell.
 
 we can calculate GSVA, SingScore and AUCell by passing the Micro Array and GeneSet data.
-And it return numpy array.
+And it return numpy array. To find GSVA Enrichment Score you use **gsva_score** function,
+for singscore you use **singscore_score** function and for AUCell you use **aucell_score** function.
 
 In this package, we using rpy2 library which help in to load the R script into python.
 And inside python we can access all the functionality of the R script by using rp2.
