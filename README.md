@@ -1,4 +1,5 @@
-# testing_repo
+# Repo
+
 
 **Operating System**
 
@@ -124,12 +125,12 @@ aucell_score(featureType: "genes",
 
 ## SingScore
 ```console
-# if knownDirection = False set the downSet value False.
-singscore_score("downSet": False,
-                "subSamples": 'null',
-                "centerScore": True,
-                "dispersionFun": mad,
-                "knownDirection": True)
+**if knownDirection = False set the downSet value False.**
+singscore_score(downSet: False,
+                subSamples: 'null',
+                centerScore: True,
+                dispersionFun: mad,
+                knownDirection: True)
 ```
 
 # Usage
@@ -160,4 +161,3 @@ BiocManager::install("singscore")
 ```console
 BiocManager::install("AUCell")
 ```
-
