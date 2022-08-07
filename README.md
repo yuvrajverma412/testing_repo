@@ -1,19 +1,54 @@
 # testing_repo
 
-## Install Libraries 
+**Operating System**
+
+Windows 10
+
+**Python Version**
+
+Python 3.9.12
+
+**Virtual Environment**
+
+*Installing Virtual Environment*
 ```console
-pip install rpy2
-pip install numpy
-pip install pandas
+python -m pip install --user virtualenv
+```
+*Creating New Virtual Environment*
+```console
+python -m venv envname
+```
+*Activating Virtual Environment*
+```console
+source envname/bin/activate
+```
+*Installing Packages*
+```console
+python -m pip install -r requirements.txt
 ```
 
-## Import Libararies
-```console
-import rpy2.robjects.packages as rpackages
-import rpy2.robjects as robjects
-import pandas as pd
-import numpy as np
-```
+## Description
+r_2_python_conversion package is use to calculate GSVA, SingScore and AUCell.
+
+Gene set variation analysis (GSVA) is a particular type of gene set enrichment
+method that works on single samples and enables pathway-centric analyses of 
+molecular data by performing a conceptually simple but powerful change in the 
+functional unit of analysis, from genes to gene sets.
+
+SingScore implements a simple single-sample gene-set (gene-signature) scoring 
+method which scores individual samples independently without relying on other 
+samples in gene expression datasets.
+
+AUCell allows to identify cells with active gene sets (e.g. signatures, gene 
+modules...) in single-cell RNA-seq data. AUCell uses the "Area Under the Curve" 
+(AUC) to calculate whether a critical subset of the input gene set is enriched 
+within the expressed genes for each cell.
+
+we can calculate GSVA, SingScore and AUCell by passing the Micro Array and GeneSet data.
+And it return numpy array.
+
+In this package, we using rpy2 library which help in to load the R script into python.
+And inside python we can access all the functionality of the R script by using rp2.
 
 ## To import the function from R to python use below command
 ```console
@@ -40,6 +75,49 @@ args = (('csv_file_path', self.csv_file_path),
 matrix = aucell_data_collection.rcall(args)
 ```
 
+## pass the R script path
+```console
+r_path = 'r_script_file_path'
+```
+
+## pass the csv and gmt path
+```console
+obj = r_2_python_conversion("csv_file_path", "gmt_file_path")
+```
+
+## choice the function which you want to run
+```console
+output = obj.aucell_score(r_path, **args)
+```
+
+# Usage
+
+## source function is use to load the whole R script inside the Python
+```console
+r = robjects.r
+r['source'](r_file_path)
+```
+
+## Command to install BioPackage Installer
+```console
+if (!require("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+```
+
+## Command to install GSVA Library
+```console
+BiocManager::install("GSVA")
+```
+
+## Command to install SingScore Library
+```console
+BiocManager::install("singscore")
+```
+
+## Command to install AUCell Library
+```console
+BiocManager::install("AUCell")
+```
 ## pass the R script path
 ```console
 r_path = 'r_script_file_path'
