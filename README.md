@@ -1,6 +1,5 @@
 # Repo
 
-
 **Operating System**
 
 Windows 10
@@ -28,7 +27,7 @@ source envname/bin/activate
 python -m pip install -r requirements.txt
 ```
 
-## Description
+# Over View
 r_2_python_conversion package is use to calculate GSVA, SingScore and AUCell. We can
 calculate GSVA, SingScore and AUCell by passing the Micro Array and GeneSet data.
 And it return Data Frame. To find GSVA Enrichment Score you use **gsva_score** function,
@@ -91,10 +90,21 @@ obj = r_2_python_conversion("csv_file_path", "gmt_file_path")
 ```console
 output = obj.aucell_score(**args)
 ```
+
+# Getting Started
+
 ## importing r_2_python_conversion module by using below command
 
 ```console
 from src.rtopy import r_2_python_conversion
+```
+
+## calling GSVA, SingScore and AUCell
+```console
+obj = r_2_python_conversion('micro_array_file_path', 'geneset_file_path')
+gsva_output = obj.gsva_score()
+aucell_output = obj.aucell_score()
+singscore_output = obj.singscore()
 ```
 
 # Arguments
