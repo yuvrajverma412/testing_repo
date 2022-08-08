@@ -29,11 +29,11 @@ python -m pip install -r requirements.txt
 ```
 
 ## Description
-r_2_python_conversion package is use to calculate GSVA, SingScore and AUCell. We 
-can calculate GSVA, SingScore and AUCell by passing the Micro Array and GeneSet data.
-And it return numpy array. To find GSVA Enrichment Score you use **gsva_score** function,
-for singscore you use **singscore_score** function and for AUCell you use **aucell_score** 
-function.
+r_2_python_conversion package is use to calculate GSVA, SingScore and AUCell. We can
+calculate GSVA, SingScore and AUCell by passing the Micro Array and GeneSet data.
+And it return Data Frame. To find GSVA Enrichment Score you use **gsva_score** function,
+for singscore you use **singscore_score** function and for AUCell you use **aucell_score**
+function. **singscore_score** function return two things (**total_score_df** and **total_dispersion_df**) Data Frame.
 
 Gene set variation analysis (GSVA) is a particular type of gene set enrichment
 method that works on single samples and enables pathway-centric analyses of 
@@ -89,7 +89,12 @@ obj = r_2_python_conversion("csv_file_path", "gmt_file_path")
 
 ## choice the function which you want to run
 ```console
-output = obj.aucell_score(r_path, **args)
+output = obj.aucell_score(**args)
+```
+## importing r_2_python_conversion module by using below command
+
+```console
+from src.rtopy import r_2_python_conversion
 ```
 
 # Arguments
@@ -132,6 +137,19 @@ singscore_score(downSet: False,
                 centerScore: True,
                 dispersionFun: mad,
                 knownDirection: True)
+```
+
+# Testing
+
+## Test r_2_python_conversion module by using below command
+```console
+from src.rtopy import r_2_python_conversion
+
+obj = r_2_python_conversion('./data/matrix_.csv', './data/c2.cp.v7.5.1.symbols.gmt')
+gsva_output = obj.gsva_score()
+# aucell_output = obj.aucell_score()
+# singscore_output = obj.singscore()
+print(gsva_output)
 ```
 
 # Usage
