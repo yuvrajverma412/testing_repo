@@ -57,7 +57,7 @@ r_path = 'r_script_file_path'
 
 ## pass the micro array file path in csv format and gene set data path in gmt format
 ```console
-obj = RtoPy("csv_file_path", "gmt_file_path")
+obj = RtoPy("mirco_array", "gene_set")
 ```
 
 ## choice the function which you want to run
@@ -117,7 +117,7 @@ BiocManager::install("singscore")
 BiocManager::install("AUCell")
 ```
 
-## importing r_2_python_conversion module by using below command
+## importing rtopy module by using below command
 
 ```console
 from src.rtopy import RtoPy
