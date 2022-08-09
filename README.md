@@ -1,38 +1,12 @@
-# Repo
+# rtopy
 
-**Operating System**
 
-Windows 10
-
-**Python Version**
-
-Python 3.9.12
-
-**Virtual Environment**
-
-*Installing Virtual Environment*
-```console
-python -m pip install --user virtualenv
-```
-*Creating New Virtual Environment*
-```console
-python -m venv envname
-```
-*Activating Virtual Environment*
-```console
-source envname/bin/activate
-```
-*Installing Packages*
-```console
-python -m pip install -r requirements.txt
-```
-
-# Over View
-r_2_python_conversion package is use to calculate GSVA, SingScore and AUCell. We can
+# Description
+rtopy package is use to calculate GSVA, SingScore and AUCell. We can
 calculate GSVA, SingScore and AUCell by passing the Micro Array and GeneSet data.
-And it return Data Frame. To find GSVA Enrichment Score you use **gsva_score** function,
-for singscore you use **singscore_score** function and for AUCell you use **aucell_score**
-function. **singscore_score** function return two things (**total_score_df** and **total_dispersion_df**) Data Frame.
+And it return Data Frame. To find GSVA Enrichment Score you use **gsvaScore** function,
+for singscore you use **singScore** function and for AUCell you use **aucellScore**
+function. **singScore** function return two things (**total_score_df** and **total_dispersion_df**) Data Frame.
 
 Gene set variation analysis (GSVA) is a particular type of gene set enrichment
 method that works on single samples and enables pathway-centric analyses of 
@@ -51,12 +25,12 @@ within the expressed genes for each cell.
 In this package, we using rpy2 library which help in to load the R script into python.
 And inside python we can access all the functionality of the R script by using rp2.
 
-### To import the function from R to python use below command
+## To import the function from R to python use below command
 ```console
 r = robjects.r['function_name']
 ```
 
-### To create the global Env. for R function use below command
+## To create the global Env. for R function use below command
 ```console
 data_collection = robjects.globalenv['function_name_present_inside_r_script']
 
@@ -64,54 +38,115 @@ Example:
 aucell_data_collection = robjects.globalenv['aucell_data_collection'] 
 ```
 
-### store the argument of aucell_data_collection function in tuple 
+## store the argument of aucell_data_collection function in tuple 
 ```console
 # tuple contain key and value -> key: argument name  and value: file_paths
 args = (('csv_file_path', self.csv_file_path),
         ('gmt_file_path', self.gmt_file_path),
-        ('lst', robjects.ListVector(dct)))
+        ('argument', robjects.ListVector(default_arg)))
 ```
-### pass the args variable in aucell_data_collection function to call the r function in python.
+## pass the args variable in aucell_data_collection function to call the r function in python.
 ```console
 matrix = aucell_data_collection.rcall(args)
 ```
 
-### pass the R script path
+## pass the R script path
 ```console
 r_path = 'r_script_file_path'
 ```
 
-### pass the csv and gmt path
+## pass the micro array file path in csv format and gene set data path in gmt format
 ```console
-obj = r_2_python_conversion("csv_file_path", "gmt_file_path")
+obj = RtoPy("csv_file_path", "gmt_file_path")
 ```
 
-### choice the function which you want to run
+## choice the function which you want to run
 ```console
-output = obj.aucell_score(**args)
+output = obj.aucellScore(**args)
 ```
 
-# Getting Started
+# Setup
+
+**Python Version**
+
+Python 3.9.12
+
+**Virtual Environment**
+
+*Installing Virtual Environment*
+```console
+python -m pip install --user virtualenv
+```
+*Creating New Virtual Environment*
+```console
+python -m venv envname
+```
+*Activating Virtual Environment*
+```console
+# command for windows
+
+envname\Scripts\activate
+
+# command for Linux
+
+source envname/bin/activate
+```
+*Installing Packages*
+```console
+python -m pip install -r requirements.txt
+```
+
+**Command to install BioPackage Installer**
+```console
+if (!require("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+```
+
+**Command to install GSVA Library**
+```console
+BiocManager::install("GSVA")
+```
+
+**Command to install SingScore Library**
+```console
+BiocManager::install("singscore")
+```
+
+**Command to install AUCell Library**
+```console
+BiocManager::install("AUCell")
+```
 
 ## importing r_2_python_conversion module by using below command
 
 ```console
-from src.rtopy import r_2_python_conversion
+from src.rtopy import RtoPy
 ```
 
 ## calling GSVA, SingScore and AUCell
 ```console
-obj = r_2_python_conversion('micro_array_file_path', 'geneset_file_path')
-gsva_output = obj.gsva_score()
-aucell_output = obj.aucell_score()
-singscore_output = obj.singscore()
+obj = RtoPy('micro_array_file_path.csv', 'geneset_file_path.gmt')
+gsva_output = obj.gsvaScore()
+aucell_output = obj.aucellScore()
+singscore_output = obj.singScore()
 ```
 
-# Arguments
+
+
+# Testing
+
+## Test rtopy module by using below command
+```console
+test.py
+```
+If it show 'Tested_ok' then rtopy module running prefectly. Otherwise, it show 'Test Fail'
+
+
+# Usage
 
 ## GSVA
 ```console
-gsva_score(method: "ssgsea", 
+gsvaScore(method: "ssgsea", 
             kcdf: "Gaussian", 
             abs_ranking: False,
             min_sz: 1,
@@ -125,7 +160,7 @@ gsva_score(method: "ssgsea",
 
 ## AUCell
 ```console
-aucell_score(featureType: "genes",
+aucellScore(featureType: "genes",
                 plotStats: True,
                 splitByBlocks: False,
                 BPPARAM: 'null',
@@ -142,51 +177,13 @@ aucell_score(featureType: "genes",
 ## SingScore
 ```console
 **if knownDirection = False set the downSet value False.**
-singscore_score(downSet: False,
+singScore(downSet: False,
                 subSamples: 'null',
                 centerScore: True,
                 dispersionFun: mad,
                 knownDirection: True)
 ```
 
-# Testing
+# Platform Tested
 
-## Test r_2_python_conversion module by using below command
-```console
-from src.rtopy import r_2_python_conversion
-
-obj = r_2_python_conversion('./data/matrix_.csv', './data/c2.cp.v7.5.1.symbols.gmt')
-gsva_output = obj.gsva_score()
-# aucell_output = obj.aucell_score()
-# singscore_output = obj.singscore()
-print(gsva_output)
-```
-
-# Usage
-
-## source function is use to load the whole R script inside the Python
-```console
-r = robjects.r
-r['source'](r_file_path)
-```
-
-## Command to install BioPackage Installer
-```console
-if (!require("BiocManager", quietly = TRUE))
-    install.packages("BiocManager")
-```
-
-## Command to install GSVA Library
-```console
-BiocManager::install("GSVA")
-```
-
-## Command to install SingScore Library
-```console
-BiocManager::install("singscore")
-```
-
-## Command to install AUCell Library
-```console
-BiocManager::install("AUCell")
-```
+**Windows**
