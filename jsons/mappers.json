@@ -1,0 +1,30 @@
+[{
+    "celllines": {
+        "target_column":"primary_cell_line_name",
+        "base_column":"stripped_cell_line_name",
+        "mapped_column":"cell_line_synonyms",
+        "required_columns":[
+            "DepMap_ID",
+            "cell_line_name",
+            "stripped_cell_line_name",
+            "CCLE_Name",
+            "alias"
+        ]
+    },
+
+    "genes":{
+        "target_column":"Approved symbol",
+        "required_columns":[
+            "HGNC ID",
+            "Approved symbol",
+            "Previous symbols",
+            "Alias symbols",
+            "Previous name",
+            "Alias names",
+            "NCBI Gene ID",
+            "Ensembl gene ID",
+            "Ensembl ID(supplied by Ensembl)",
+            "UCSC ID(supplied by UCSC)"
+        ]
+    }
+}]

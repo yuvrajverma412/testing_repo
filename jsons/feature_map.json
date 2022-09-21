@@ -1,0 +1,22 @@
+[
+    {
+        "TCGA_CLINICAL":{
+            
+        },
+
+        "TCGA_MUT":{
+
+            "Hugo_Symbol":"gene",
+            "Entrez_Gene_Id":"geneid",
+            "Chromosome":"chr",
+            "Start_Position":"start",
+            "End_Position":"end",
+            "Strand":"strand",
+            "Reference_Allele":"ref",
+            "Tumor_Seq_Allele2":"alt",
+            "Tumor_Sample_Barcode":"sampleid",
+            "Matched_Norm_Sample_Barcode":"matchedid"
+            
+        }
+    }
+]
